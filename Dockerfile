@@ -1,15 +1,18 @@
-FROM public.ecr.aws/lambda/python:3.8
+FROM public.ecr.aws/lambda/python:3.9
 
 RUN echo ${LAMBDA_TASK_ROOT}
 
 # Copy function code
-COPY app.py ${LAMBDA_TASK_ROOT}
+ARG zip_path 
 
-# Install the function's dependencies using file requirements.txt
-# from your project folder.
+RUN yum install -y unzip
 
-COPY requirements.txt  .
-RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+COPY ${zip_path} ${LAMBDA_TASK_ROOT}
+ 
+RUN unzip ${LAMBDA_TASK_ROOT}/${zip_path} -d ${LAMBDA_TASK_ROOT}
+                  
+RUN rm  -f ${LAMBDA_TASK_ROOT}/${zip_path}
 
-# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
-CMD [ "app.handler" ]
+#RUN cp -f ${LAMBDA_TASK_ROOT}/handler.py 
+RUN ls -l
+CMD ["handler.hello"] 
