@@ -1,5 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.8
 
+RUN echo ${LAMBDA_TASK_ROOT}
+
 # Copy function code
 COPY app.py ${LAMBDA_TASK_ROOT}
 
