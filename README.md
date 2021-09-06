@@ -1,4 +1,4 @@
-# BUILD AND DEPLOY DOCKER IMAGE TO BOTO3
+# BUILD AND DEPLOY DOCKER IMAGE TO ECR USING BOTO3
 
 	1. Make Sure to install the requried the packages from the requirements.txt
 	2. Install Docker and start the docker daemon 
