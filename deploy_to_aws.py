@@ -29,7 +29,8 @@ def main():
     # build Docker image
     docker_client = docker.from_env()
     image, build_log = docker_client.images.build(
-        path='.', tag=REPOSITORY, rm=True)
+        path='.', tag=REPOSITORY, rm=True, buildargs={'zip_path':'hello.zip'})
+    
     print(image)
     
     print("ECR_LOGIN")
