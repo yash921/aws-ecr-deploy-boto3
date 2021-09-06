@@ -1,0 +1,9 @@
+# requried deps
+boto3
+docker
+# package deps
+numpy
+pandas
+pygame
+requests
+zappa

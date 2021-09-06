@@ -1,3 +1,6 @@
 .pass
 .secrets
 *.env
+*.pyc
+__pycache__
+*.zip
