@@ -7,6 +7,7 @@ import os
 import boto3
 import docker
 
+FUNCTION_NAME = 'concierge-fn'
 REPOSITORY = 'concierge-project:latest'
 TAG = os.environ.get('TAG','latest') 
 
@@ -67,7 +68,15 @@ def main():
     push_log = docker_client.images.push(ecr_repo_name, tag=TAG)
     
     print("push sucessfull")
+
+    image_uri =  ecr_url.split(":")[1][2:] + "/" + REPOSITORY.split(":")[0] + ":" + TAG 
+
+    # update the function with the new image 
+    cmd = f"aws lambda update-function-code --function-name {FUNCTION_NAME} --image-uri {image_uri}"
     
+    # execute the command 
+    print(cmd) 
+    os.system(cmd) 
     return None
 
 

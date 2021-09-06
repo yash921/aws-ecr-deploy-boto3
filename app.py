@@ -7,7 +7,7 @@ import pandas
 
 def handler(event, context):
     body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
+            "message": "Go Serverless v1.2.0! Your function executed successfully! :) :)",
         "input": event['key1']
     }
 
