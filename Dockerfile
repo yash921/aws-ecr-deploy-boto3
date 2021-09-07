@@ -11,5 +11,6 @@ RUN unzip ${LAMBDA_TASK_ROOT}/${zip_path} -d ${LAMBDA_TASK_ROOT}
                   
 RUN rm  -f ${LAMBDA_TASK_ROOT}/${zip_path}
 
+RUN ls -l ${LAMBDA_TASK_ROOT}
 #RUN cp -f ${LAMBDA_TASK_ROOT}/handler.py 
-CMD ["handler.hello"] 
+CMD ["handler.handler"] 
