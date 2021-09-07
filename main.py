@@ -10,7 +10,7 @@ DOWNLOAD_BASE_LOCATION = os.environ.get('DOWNLOAD_BASE_LOCATION','.')
 # env variable for docker and lambda
 FUNCTION_NAME = os.environ.get('LAMBDA_FUNCTION_NAME','concierge-fn')
 REPOSITORY = os.environ.get('ECR_REPOSITORY_NAME','concierge-project:latest')
-tag = os.environ.get('TAG','latest')
+#tag = os.environ.get('TAG','latest')
 #ZIP_FILE = os.environ.get('ZIP_FILE','hello.zip')
 
 
@@ -22,5 +22,7 @@ download_object_from_s3(BUCKET_NAME,latest_added_obj,DOWNLOAD_BASE_LOCATION + '/
 
 ZIP_FILE = DOWNLOAD_BASE_LOCATION + '/'+ latest_added_obj
 
+TAG =  os.path.basename(latest_added_obj).split("_")[1][:-4] 
+print(TAG) 
 # build anddeploy container lambda 
-build_and_deploy_lambda_container(FUNCTION_NAME,REPOSITORY,ZIP_FILE,tag)
+build_and_deploy_lambda_container(FUNCTION_NAME,REPOSITORY,ZIP_FILE,TAG)
